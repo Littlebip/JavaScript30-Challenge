@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+  const url = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+  const cities = [];
+  fetch(url)
+      .then(response => response.json())
+      .then(data => cities.push(...data))
+
+  function findMatches(wordToMatch, cities) {
+    return cities.filter(place => {
+      const regex = new RegExp(wordToMatch, 'gi');
+      return place.city.match(regex) || place.state.match(regex)
+    });
+  }
+// following function to display the number with commas, american style
+function numberWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+  function displayResults() {
+    const matchArray = findMatches(this.value, cities);
+    const results = matchArray.map(result => {
+      const regex = new RegExp(this.value, 'gi');
+      // following two lines to get the highlight effect on the matches in the result list
+      const cityName = result.city.replace(regex, `<span class=\"hl\">${this.value}</splan>`)
+      const stateName = result.state.replace(regex, `<span class=\"hl\">${this.value}</span>`)
+      return `
+        <li>
+          <span class="name">${cityName}, ${stateName}</span>
+          <span class="population">${numberWithCommas(result.population)}</span>
+        </li>
+      `;
+    }).join("");
+    list.innerHTML = results;
+  }
+
+  const searchInput = document.querySelector(".search");
+  const list = document.querySelector(".suggestions");
+
+  searchInput.addEventListener("change", displayResults);
+  searchInput.addEventListener("keyup", displayResults);
+
+</script>
+</body>
+</html>
