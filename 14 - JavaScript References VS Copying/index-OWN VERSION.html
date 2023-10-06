@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body>
+
+  <script>
+    // Copying VS Referencing
+    // Copying creates a new element
+    // Referencing only points to the original element
+    // For strings, numbers and booleans, elements get copied by default, ex:
+
+    // let name = "me";
+    // let name2 = name;
+    // console.log(name, name2); => me me
+    // name2 = "we";
+    // name = "you";
+    // console.log(name, name2); => you we
+
+    // This doesn't work for arrays and objects, they get references by default.
+    // Ways to copy an array:
+    // 1-- with slice()
+    // If nothing is passed as arguments, slice() creates a full copy of the array.
+    // 2-- with concat
+    // ex: const arr2 = [].concat(arr1)
+    // 3-- with spread (ES6)
+    // ex: const arr2 = [...arr1]
+    // 4-- with Array.from
+    // ex: const arr2 = Array.from(arr1)
+    // Way to copy an object:
+    // with Object.assign
+    // ex: const obj2 = Object.assign({}, obj1, { newKey: newValue })
+    // NB: both array and object copies are shallow copies, any nested level will only be
+    // referenced ! cf. lodash to deep clone, only if really necessary.
+  </script>
+
+</body>
+</html>
