@@ -324,7 +324,7 @@ var cornify_add_cupcake_button = function () {
     button.setAttribute("aria-label", "Hide unicorns and rainbows");
 
     var image = document.createElement("img");
-    image.src = "https://www.cornify.com/assets/cornify-cupcake-button.png";
+    image.src = "https://www.com/assets/cornify-cupcake-button.png";
     image.alt = "Cupcake button";
     image.width = 50;
     image.height = 50;

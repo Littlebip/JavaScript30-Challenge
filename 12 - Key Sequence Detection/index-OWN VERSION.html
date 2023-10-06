@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Key Detection</title>
+    <!-- script in head too to get the link -->
+    <script type="text/javascript" src="./cornify.js"></script>
+    <!--  -->
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <script>
+      const secret = 'ArrowUpArrowDownArrowUpArrowDown';
+      const entries = [];
+
+      window.addEventListener('keyup', (e) => {
+        entries.push(e.key);
+        // entries.splice(-(secret.length - 1), entries.length - secret.length);
+        const result = entries.join('');
+        result.slice(-(secret.length - 1));
+        if (result.includes(secret)) {
+          cornify_add();
+        };
+      })
+
+
+    </script>
+  </body>
+</html>
